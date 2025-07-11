@@ -21,7 +21,7 @@ jobs:
           java-version: '21'
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew :app:clean :app:build
 
       - name: Start Minikube
         run: |
@@ -33,6 +33,7 @@ jobs:
 
       - name: Build Docker image in Minikube
         run: |
+          cd /root/app
           docker build -t devops-java-app .
 
       - name: Deploy to Kubernetes
